@@ -54,7 +54,7 @@ const RecentProjects = () => {
                     </div>
                 )) } */}
                 { projects.map(item => (
-                    <div className='w-full h-full mx-auto'>
+                    <div className='w-full h-full mx-auto' key={item.id}>
                         <a 
                             href='' 
                             className='p-4 block relative rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] border border-white/[0.1] hover:scale-105 hover:border-purple transition duration-700 overflow-hidden'
