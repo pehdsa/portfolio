@@ -26,7 +26,7 @@ const Footer = () => {
                     Reach out to me today and let's discuss how I can help you
                     achieve your goals.
                 </p>
-                <a href="mailto:pehdsa@gmail.com">
+                <a href="mailto:contato@pedrohdsantos.com">
                     <MagicButton icon={<FaLocationArrow />} position="right">
                         Let's get in touch
                     </MagicButton>
@@ -35,7 +35,7 @@ const Footer = () => {
 
             <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
                 <p className="md:text-base text-sm md:font-normal font-light mb-5 md:mb-0">
-                    Copyright © 2024 Adrian Hajdin
+                    Copyright © 2024 Pedro Santos
                 </p>
 
                 <div className="flex items-center md:gap-3 gap-6">
@@ -43,9 +43,12 @@ const Footer = () => {
                     <Button
                         key={info.id}
                         borderRadius="1rem"
-                        className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-sm border border-black-300"
+                        className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-100 rounded-sm border border-black-300"
+                        url={ info.url }
                     >
-                        <img src={info.img} alt="icons" width={20} height={20} />
+                        <a href={ info.url } target='_blank' rel='noreferrer noopener' className='flex absolute w-full h-full items-center justify-center'>
+                            <img src={info.img} alt="icons" width={20} height={20} />
+                        </a>
                     </Button>
                 ))}
             </div>
