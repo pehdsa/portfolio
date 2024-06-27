@@ -1,0 +1,43 @@
+name: "Deploy"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Baixar o código"
+        uses: actions/checkout@v4
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+    
+      - name: Build project
+        run: npm run build
+      
+      - name: "Copiar arquivos"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "./out"
+          target: "/site"
+
+      - name: "Enviar por ssh"
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: whoami
